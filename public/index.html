@@ -1,22 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="assets/styles/normalize.css" />
-    <link rel="stylesheet" href="assets/styles/style.css" />
-    <title>Document</title>
-  </head>
-  <body>
-    <div class="page">
-      <h1>Welcome to your Website</h1>
-      <p>Happy building!</p>
-      <a
-        href="https://github.com/g-delmo/html-css-express"
-        target="_blank"
-        class="star-button"
-        >Star on GitHub</a
-      >
-    </div>
-  </body>
+<html>
+<head>
+  <title>Project</title>
+  <link href="https://fonts.googleapis.com/css2?family=Passion+One&display=swap" rel="stylesheet">
+  <style>
+    * {
+      font-size: 48px;
+      font-family: 'Passion One', cursive;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <form id="licenseForm">
+    Please Enter Your Username and License Key<br>
+    <input name="username" id="username" required>
+    <input type="password" name="licenseKey" id="licenseKey" required>
+    <input type="submit" value="SUBMIT">
+  </form>
+  <script>
+    document.getElementById("licenseForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+      
+      const username = document.getElementById("username").value;
+      const licenseKey = document.getElementById("licenseKey").value;
+
+      const formData = new FormData();
+      formData.append("username", username);
+      formData.append("licenseKey", licenseKey);
+
+      fetch("/validate-license", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ username, licenseKey })
+      })
+      .then(response => response.text())
+      .then(result => {
+        if (result === "License key valid") {
+          window.location.href = window.location.href + "/A647827bl24D";
+        } else if (result === "License key expired") {
+          window.location.href = window.location.href + "/expired";
+        } else {
+          window.location.href = window.location.href + "/expired";
+        }
+      })
+      .catch(error => {
+        console.error(error);
+        alert("An error occurred");
+      });
+    });
+  </script>
+</body>
 </html>
