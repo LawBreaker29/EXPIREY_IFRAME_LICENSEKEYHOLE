@@ -39,7 +39,7 @@
       .then(response => response.text())
       .then(result => {
         if (result === "License key valid") {
-          window.location.href = "URL";
+          window.location.href = "https://example.com";
         } else if (result === "License key expired") {
           window.location.href = window.location.href + "/expired.html";
         } else {
