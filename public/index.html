@@ -39,7 +39,16 @@
       .then(response => response.text())
       .then(result => {
         if (result === "License key valid") {
-          window.location.href = "https://example.com";
+          const iframe = document.createElement("iframe");
+          iframe.src = "https://example.com";
+          iframe.style.position = "fixed";
+          iframe.style.top = "0";
+          iframe.style.left = "0";
+          iframe.style.width = "100%";
+          iframe.style.height = "100%";
+          iframe.style.border = "none";
+          document.body.innerHTML = "";
+          document.body.appendChild(iframe);
         } else if (result === "License key expired") {
           window.location.href = window.location.href + "/expired.html";
         } else {
