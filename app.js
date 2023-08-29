@@ -27,8 +27,6 @@ app.post('/validate-license', (req, res) => {
     try {
       const aexpectedLicenseKey = licenseKeyGen.createLicense(licenseData);
       const expectedLicenseKey = aexpectedLicenseKey.license;
-      console.log(aexpectedLicenseKey);
-      console.log(expectedLicenseKey)
       if (licenseKey === expectedLicenseKey) {
         res.send('License key valid');
       } else {
