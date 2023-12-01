@@ -22,7 +22,7 @@ app.post('/validate-license', (req, res) => {
   } else {
     // Generate the expected license key based on the provided code
     const studentUser = { company: username };
-    const licenseData = { info: studentUser, prodCode: 'EEN850392', appVersion: '1.0' };
+    const licenseData = { info: studentUser, prodCode: 'joshuaisc00l', appVersion: '1.0' };
 
     try {
       const aexpectedLicenseKey = licenseKeyGen.createLicense(licenseData);
