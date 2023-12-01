@@ -13,22 +13,20 @@ app.use(
 );
 
 app.post('/validate-license', (req, res) => {
-  const expiredKeys = ['B', 'A'];
+  const expiredUsers = ['B', 'A'];
   const licenseKey = req.body.licenseKey;
   const username = req.body.username;
 
-  if (expiredKeys.includes(licenseKey)) {
+  if (expiredUsers.includes(username)) {
     res.send('License key expired');
   } else {
     // Generate the expected license key based on the provided code
     const studentUser = { company: username };
-    const licenseData = { info: studentUser, prodCode: 'EEN850392', appVersion: '1.0' };
+    const licenseData = { info: studentUser, prodCode: 'joshuaisc00l', appVersion: '1.0' };
 
     try {
       const aexpectedLicenseKey = licenseKeyGen.createLicense(licenseData);
       const expectedLicenseKey = aexpectedLicenseKey.license;
-      console.log(aexpectedLicenseKey);
-      console.log(expectedLicenseKey)
       if (licenseKey === expectedLicenseKey) {
         res.send('License key valid');
       } else {
